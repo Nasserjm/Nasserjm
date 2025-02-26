@@ -1,62 +1,97 @@
-- 👋 Hi, I’m @Nasserjm
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+import 'package:flutter/material.dart';
 
-<!---
-Nasserjm/Nasserjm is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
-شكرًا لتوضيحك! يبدو أنك تشير إلى ميزة جديدة أعلنت عنها **Apple** في مؤتمر **WWDC 2023**، وهي ميزة **Tap to Cash**، والتي تسمح بتحويل الأموال بين أجهزة iPhone باستخدام تقنية **NFC**. هذه الميزة ستكون جزءًا من نظام **iOS 17**، ومن المتوقع أن تكون متاحة قريبًا.
+void main() {
+  runApp(MyApp());
+}
 
----
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Tap to Cash Prototype',
+      home: HomeScreen(),
+    );
+  }
+}
 
-### تفاصيل عن ميزة **Tap to Cash**:
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tap to Cash'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('اضغط لتحويل الأموال'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TransferScreen()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
 
-#### 1. **كيف تعمل**:
-   - **الفكرة**: تسمح للمستخدمين بتحويل الأموال بين أجهزة iPhone بلمسة واحدة باستخدام تقنية NFC.
-   - **التفاصيل**:
-     - يقرب المستخدم هاتفه من هاتف المستلم.
-     - يتم التحويل مباشرة عبر تطبيق **Apple Cash**.
-   - **مثال**: إذا أردت إرسال 100 ريال لصديقك، يمكنك لمس هاتفك بهاتفه، وسيتم التحويل تلقائيًا.
+class TransferScreen extends StatefulWidget {
+  @override
+  _TransferScreenState createState() => _TransferScreenState();
+}
 
-#### 2. **التكامل مع Apple Cash**:
-   - **Apple Cash** هو نظام الدفع الخاص بـ Apple الذي يسمح بتحويل الأموال بين الأفراد.
-   - **Tap to Cash** ستكون امتدادًا لهذه الخدمة، مع إضافة سهولة استخدام NFC.
+class _TransferScreenState extends State<TransferScreen> {
+  final TextEditingController _amountController = TextEditingController();
+  bool _isTransferring = false;
+  String _message = '';
 
-#### 3. **الأمان**:
-   - ستستخدم الميزة تقنيات تشفير متقدمة لحماية البيانات المالية.
-   - سيتم تأكيد الهوية عبر Face ID أو Touch ID.
+  void _startTransfer() async {
+    setState(() {
+      _isTransferring = true;
+      _message = '';
+    });
 
----
+    // محاكاة عملية تحويل الأموال
+    await Future.delayed(Duration(seconds: 2));
 
-### هل هذه الفكرة جديدة؟
+    setState(() {
+      _isTransferring = false;
+      _message = 'تم التحويل بنجاح!';
+    });
+  }
 
-- **نعم**: لأنها أول مرة تقدم Apple ميزة تحويل الأموال باستخدام NFC بين الأفراد.
-- **لا**: لأن بعض التطبيقات الخارجية بدأت تجريب استخدام NFC لتحويل الأموال، لكنها ليست جزءًا من نظام Apple الرسمي.
-
----
-
-### تأثير هذه الميزة على فكرتك:
-
-إذا كانت **Apple** ستطلق ميزة **Tap to Cash**، فهذا يعني أن فكرة تحويل الأموال باستخدام NFC بين الأفراد **ستصبح شائعة**، خاصة مع انتشار أجهزة iPhone. ومع ذلك، لا يزال هناك مجال لتنفيذ فكرتك بشكل **مميز**، خاصة إذا ركزت على:
-
-1. **السوق السعودي**: يمكنك تقديم تطبيق مخصص للسوق السعودي، مع مراعاة الثقافة والاحتياجات المحلية.
-2. **ميزات إضافية**: يمكنك إضافة ميزات مثل **مجموعات التحويل**، **التحديات المالية**، أو **التبرعات الاجتماعية**.
-3. **التوافق مع جميع الأجهزة**: يمكن أن يكون تطبيقك متوافقًا مع **Android** و**iOS**، مما يجعله أكثر شمولية.
-
----
-
-### نصائح لتنفيذ فكرتك:
-
-1. **السرعة**: حاول إطلاق التطبيق قبل أن تصبح ميزة **Tap to Cash** شائعة.
-2. **التفرد**: أضف ميزات تجعل تطبيقك **مختلفًا** عن Apple Tap to Cash.
-3. **التسويق**: ركز على تسويق التطبيق كحل **سريع** و**سهل** للتحويلات المالية.
-
----
-
-### خلاصة:
-ميزة **Apple Tap to Cash** ستجعل فكرة تحويل الأموال باستخدام NFC **أكثر شيوعًا**، لكن لا يزال هناك مجال لتطبيقك أن يكون **مميزًا** إذا ركزت على **السوق السعودي** و**ميزات إضافية**.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('تحويل الأموال'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _amountController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'أدخل المبلغ',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            _isTransferring
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: _startTransfer,
+                    child: Text('تحويل'),
+                  ),
+            SizedBox(height: 20),
+            Text(_message),
+          ],
+        ),
+      ),
+    );
+  }
+}
